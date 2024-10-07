@@ -89,7 +89,7 @@ public class SlotServiceImpl implements SlotService {
         }
 
         saveSlots(store, slotOption, startDate, endDate);
-        eventPublisher.publishEvent(new SlotCreateEvent(storeId, store.getSlotOption()));
+        eventPublisher.publishEvent(new SlotCreateEvent(storeId, slotOption));
     }
 
     @Override
@@ -110,7 +110,7 @@ public class SlotServiceImpl implements SlotService {
         }
 
         saveSlots(store, slotOption, startDate, endDate);
-        eventPublisher.publishEvent(new SlotCreateEvent(storeId, store.getSlotOption()));
+        eventPublisher.publishEvent(new SlotCreateEvent(storeId, slotOption));
     }
 
     @Override

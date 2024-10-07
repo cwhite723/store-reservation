@@ -19,6 +19,18 @@ public class ReviewController {
 
     private final ReviewService reviewService;
 
+
+    /*
+
+    리뷰 등록 api
+    POST http://localhost:8080/api/review/1
+
+    {
+        "content" : "너무 맛있었어요 ~!",
+        "starPoint" : 5
+    }
+
+     */
     @LoginCheck
     @PostMapping("/{booking-id}")
     public ApplicationResponse<Long> create(@CurrentCustomer Customer customer,
@@ -30,6 +42,17 @@ public class ReviewController {
         return ApplicationResponse.ok(reviewId, SuccessCode.SUCCESS);
     }
 
+    /*
+
+    리뷰 수정 api
+    PATCH http://localhost:8080/api/review/1
+
+    {
+        "content" : "너무 맛있었어요 ~!",
+        "starPoint" : 5
+    }
+
+     */
     @LoginCheck
     @PatchMapping("/{review-id}")
     public ApplicationResponse<Void> patch(@CurrentCustomer Customer customer,
@@ -41,6 +64,12 @@ public class ReviewController {
         return ApplicationResponse.noData(SuccessCode.SUCCESS);
     }
 
+    /*
+
+    리뷰 삭제 api(고객용)
+    DELETE http://localhost:8080/api/review/customer/1
+
+     */
     @LoginCheck
     @DeleteMapping("/customer/{review-id}")
     public ApplicationResponse<Void> delete(@CurrentCustomer Customer customer,
@@ -51,6 +80,16 @@ public class ReviewController {
         return ApplicationResponse.noData(SuccessCode.SUCCESS);
     }
 
+    /*
+
+    리뷰 삭제 api(점주용)
+    DELETE http://localhost:8080/api/review/owner/1
+
+    {
+        "reason" : "매장 공사로 인해 임시 휴무합니다."
+    }
+
+     */
     @LoginCheck
     @DeleteMapping("/owner/{review-id}")
     public ApplicationResponse<String> delete(@CurrentOwner Owner owner,
